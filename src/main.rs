@@ -1,10 +1,9 @@
-use std::fs::{create_dir_all, remove_dir_all, File};
+use std::fs::{create_dir_all, remove_dir_all};
 use std::io::Cursor;
-use std::path::Path;
 
 use heed::EnvOpenOptions;
-use milli::update::{IndexDocumentsMethod, Settings, UpdateBuilder, UpdateFormat};
-use milli::{FilterCondition, Index};
+use milli::update::{IndexDocumentsMethod, UpdateBuilder, UpdateFormat};
+use milli::Index;
 
 fn main() {
     let db_name = "bug.mmdb";
