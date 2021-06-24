@@ -23,9 +23,6 @@ fn main() {
     let mut wtxn = index.write_txn().unwrap();
     let mut builder = update_builder.settings(&mut wtxn, &index);
 
-    /* here I can set the settings */
-    builder.reset_filterable_fields();
-
     builder.execute(|_, _| ()).unwrap();
     wtxn.commit().unwrap();
 
