@@ -40,9 +40,7 @@ fn main() {
   { "id": 2,    "title": "Pride and Prejudice",                    "author": "Jane Austin",              "genre": "romance",    "price": 3.5 },
   { "id": 456,  "title": "Le Petit Prince",                        "author": "Antoine de Saint-Exupéry", "genre": "adventure" , "price": 10.0 },
   { "id": 1,    "title": "Alice In Wonderland",                    "author": "Lewis Carroll",            "genre": "fantasy",    "price": 25.99 },
-  { "id": 1344, "title": "The Hobbit",                             "author": "J. R. R. Tolkien",         "genre": "fantasy" },
-  { "id": 4,    "title": "Harry Potter and the Half-Blood Prince", "author": "J. K. Rowling",            "genre": "fantasy" },
-  { "id": 42,   "title": "The Hitchhiker's Guide to the Galaxy",   "author": "Douglas Adams" }
+  { "id": 4,    "title": "Harry Potter and the Half-Blood Prince", "author": "J. K. Rowling",            "genre": "fantasy" }
 ]
         "#;
 
@@ -61,7 +59,7 @@ fn main() {
 [
   {
 	"id": 2,
-	"author": "J. Austen",
+	"author": "au",
 	"date": "1813"
   }
 ]
