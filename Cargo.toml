@@ -6,6 +6,5 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-# milli = { git = "https://github.com/meilisearch/milli", rev = "41c4a5b60d70849b85a2920df15d39e20536c1f7" }
-milli = { git = "https://github.com/irevoire/milli", branch = "ub" }
-heed = { git = "https://github.com/irevoire/heed", branch = "main", default-features = false, features = ["lmdb", "sync-read-txn"] }
+milli = { git = "https://github.com/meilisearch/milli", rev = "4c9531b" }
+heed = { git = "https://github.com/Kerollmops/heed", tag = "v0.12.1" }
