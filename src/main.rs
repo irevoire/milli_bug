@@ -17,7 +17,7 @@ fn create_index() {
     let mut options = EnvOpenOptions::new();
     options.map_size(100 * 1024 * 1024 * 1024); // 100 GB
     options.max_readers(10);
-    let index = Index::new(options, "bug.mmdb").unwrap();
+    let index = Index::new(options, db_name).unwrap();
 
     let update_builder = UpdateBuilder::new(0);
     let mut wtxn = index.write_txn().unwrap();
@@ -50,5 +50,6 @@ fn create_index() {
 
 fn main() {
     create_index();
+    eprintln!("The first index creation has completed successfully and the index has been dropped");
     create_index();
 }
