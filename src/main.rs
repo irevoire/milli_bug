@@ -5,10 +5,10 @@ use heed::EnvOpenOptions;
 use milli::update::{IndexDocumentsMethod, UpdateBuilder, UpdateFormat};
 use milli::Index;
 
-fn main() {
+fn create_index() {
     let db_name = "bug.mmdb";
     match remove_dir_all(db_name) {
-        Ok(_) => (),
+        Ok(_) => eprintln!("The previous db has been deleted from the filesystem"),
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => (),
         Err(e) => panic!("{}", e),
     }
@@ -22,6 +22,8 @@ fn main() {
     let update_builder = UpdateBuilder::new(0);
     let mut wtxn = index.write_txn().unwrap();
     let mut builder = update_builder.settings(&mut wtxn, &index);
+
+    builder.set_primary_key("id".to_owned());
 
     builder.execute(|_, _| ()).unwrap();
     wtxn.commit().unwrap();
@@ -44,27 +46,9 @@ fn main() {
     let reader = Cursor::new(documents);
     builder.execute(reader, |_, _| ()).unwrap();
     wtxn.commit().unwrap();
+}
 
-    println!("first batch of document inserted");
-
-    let update_builder = UpdateBuilder::new(0);
-    let mut wtxn = index.write_txn().unwrap();
-    let mut builder = update_builder.index_documents(&mut wtxn, &index);
-    builder.update_format(UpdateFormat::Json);
-    builder.index_documents_method(IndexDocumentsMethod::UpdateDocuments);
-    let documents = r#"
-[
-  {
-	"id": 2,
-	"author": "au",
-	"date": "1813"
-  }
-]
-        "#;
-
-    let reader = Cursor::new(documents);
-    builder.execute(reader, |_, _| ()).unwrap();
-    wtxn.commit().unwrap();
-
-    println!("second batch of document inserted");
+fn main() {
+    create_index();
+    create_index();
 }
